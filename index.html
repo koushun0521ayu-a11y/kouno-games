@@ -1,11 +1,44 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>コウノゲームズ</title>
+<meta charset="UTF-8">
+<title>KOUNO GAMES</title>
 </head>
 <body>
-  <h1>コウノゲームズ</h1>
-  <p>ゲーム準備中</p>
+
+<h1>KOUNO GAMES</h1>
+
+<p>コウノクエスト デモ</p>
+
+<script>
+let hp = 100;
+let enemyHp = 50;
+
+function loop(){
+  if(hp <= 0){
+    document.body.innerHTML = "<h1>ゲームオーバー</h1>";
+    return;
+  }
+  if(enemyHp <= 0){
+    document.body.innerHTML = "<h1>勝利！</h1>";
+    return;
+  }
+
+  enemyHp -= 10;
+  hp -= 5;
+
+  document.body.innerHTML = `
+  <h1>KOUNO QUEST</h1>
+  <p>HP: ${hp}</p>
+  <p>敵HP: ${enemyHp}</p>
+  `;
+
+  setTimeout(loop,1000);
+}
+
+loop();
+</script>
+
 </body>
 </html>
