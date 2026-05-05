@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +7,9 @@
 <body>
 
 <h1>KOUNO GAMES</h1>
+<p>コウノクエスト（自動戦闘デモ）</p>
 
-<p>コウノクエスト デモ</p>
+<p id="status"></p>
 
 <script>
 let hp = 100;
@@ -17,24 +17,28 @@ let enemyHp = 50;
 
 function loop(){
   if(hp <= 0){
-    document.body.innerHTML = "<h1>ゲームオーバー</h1>";
+    document.getElementById("status").innerHTML = "ゲームオーバー";
     return;
   }
+
   if(enemyHp <= 0){
-    document.body.innerHTML = "<h1>勝利！</h1>";
+    document.getElementById("status").innerHTML = "勝利！";
     return;
   }
 
-  enemyHp -= 10;
-  hp -= 5;
+  let playerDamage = Math.floor(Math.random() * 10);
+  let enemyDamage = Math.floor(Math.random() * 8);
 
-  document.body.innerHTML = `
-  <h1>KOUNO QUEST</h1>
-  <p>HP: ${hp}</p>
-  <p>敵HP: ${enemyHp}</p>
-  `;
+  enemyHp -= playerDamage;
+  hp -= enemyDamage;
 
-  setTimeout(loop,1000);
+  document.getElementById("status").innerHTML =
+    "あなたHP: " + hp + "<br>" +
+    "敵HP: " + enemyHp + "<br>" +
+    "あなたの攻撃: " + playerDamage + "<br>" +
+    "敵の攻撃: " + enemyDamage;
+
+  setTimeout(loop, 1000);
 }
 
 loop();
